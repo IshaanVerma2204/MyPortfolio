@@ -192,6 +192,7 @@ function ProjectCard({ project, i }: { project: Project; i: number }) {
     <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onHoverStart={() => setHovered(true)} onHoverEnd={() => setHovered(false)}
+      onClick={() => project.link && window.open(project.link, '_blank')}
       whileHover={{ y: -10, scale: 1.02 }} whileTap={{ scale: 0.98 }}
       className="relative rounded-2xl overflow-hidden group cursor-pointer"
       style={{ background: 'rgba(15,15,30,0.6)', border: '1px solid rgba(255,255,255,0.06)' }}>
@@ -202,11 +203,13 @@ function ProjectCard({ project, i }: { project: Project; i: number }) {
         <div className="flex justify-between items-start mb-5">
           <div className="p-3 rounded-xl" style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)' }}>{project.icon}</div>
           <div className="flex gap-1">
-            <motion.a whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }} href={project.link || '#'}
+            <motion.a whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }} href={project.link || '#'} target="_blank" rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="p-2.5 rounded-lg text-slate-500 hover:text-white hover:bg-slate-800 transition-all min-w-[40px] min-h-[40px] flex items-center justify-center">
               <Github size={16} />
             </motion.a>
-            <motion.a whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }} href={project.link || '#'}
+            <motion.a whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }} href={project.link || '#'} target="_blank" rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="p-2.5 rounded-lg text-slate-500 hover:text-cyan-400 hover:bg-cyan-950/40 transition-all min-w-[40px] min-h-[40px] flex items-center justify-center">
               <ExternalLink size={16} />
             </motion.a>
